@@ -2,13 +2,22 @@
 
 add_filter(
 	'posts_where',
-	function ( $where, WP_Query $query ) {
+	function ( $where, WP_Query $query, $case_sensitive ) {
 		global $wpdb;
 
 		$starts_with = esc_sql( $query->get( 'starts_with' ) );
 
 		if ( $starts_with ) {
-			$where .= " AND {$wpdb->posts}.post_title LIKE '{$starts_with}%'";
+			if( !$case_sensitive ) {
+				
+				$starts_with = strtolower($starts_with);
+				$where .= " AND LOWER({$wpdb->posts}.post_title) LIKE '{$starts_with}%'";
+				
+			} else {
+				
+				$where .= " AND {$wpdb->posts}.post_title LIKE '{$starts_with}%'";
+				
+			}
 		}
 
 		return $where;
