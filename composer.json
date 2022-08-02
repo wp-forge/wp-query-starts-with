@@ -1,0 +1,17 @@
+{
+  "name": "wp-forge/wp-query-starts-with",
+  "description": "A Composer package for WordPress that allows you to query posts based on what the title starts with.",
+  "type": "library",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Kris Cochran"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "wp-query-starts-with.php"
+    ]
+  },
+  "require": {}
+}
